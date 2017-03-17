@@ -178,7 +178,6 @@ public class Bot implements Runnable {
 			}
 			
 			api.getChannelById(String.valueOf(config.channel)).sendMessage("INFO: SIZE OF QUESTIONS " + config.officialQuestions.size());
-			api.getChannelById(String.valueOf(config.channel)).sendMessage("INFO: SIZE OF QUESTIONS " + config.officialAnswers.size());
 		}
 	}
 	

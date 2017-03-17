@@ -388,6 +388,7 @@ public class QAListener implements MessageCreateListener {
 					String[] suff = arg1.getContent().split("\\s+");
 					
 					String suffix = suff[0].substring(1);
+					String afterSuff = arg1.getContent().substring(suff[0].length());
 					System.out.println(suffix);
 					if (suffix.equalsIgnoreCase("me") && !asking) {
 						arg1.reply("Okay, it's " + arg1.getAuthor().getName() + "'s turn now!");
@@ -467,7 +468,7 @@ public class QAListener implements MessageCreateListener {
 						{
 							if(joinedIds.get(i).getId().equals(arg1.getAuthor().getId()))
 							{
-								enteredAnswers[i] = msg;
+								enteredAnswers[i] = afterSuff.replaceAll("\\s+", "");
 								time[i] = MainClass.getBot().getTimer("a").current;
 							}
 						}

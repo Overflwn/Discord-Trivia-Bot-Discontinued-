@@ -143,3 +143,4 @@ Also case doesn't matter.
 
 *NOTE:* The answers HAVE to be in the same order as the questions.
 *NOTE2:* JSON Arrays' last entry don't have a "," as you can see.
+*NOTE3:* The answers MUST NOT contain a whitespace, as the answers get automatically made lowercase and their whitespaces get removed.

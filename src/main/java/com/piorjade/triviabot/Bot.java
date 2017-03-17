@@ -230,6 +230,12 @@ public class Bot implements Runnable {
 	
 	public User[] getUserList()
 	{
+		userList = new User[api.getUsers().size()];
+		Iterator<User> it = api.getUsers().iterator();
+		for (int i = 0; i < api.getUsers().size(); i++)
+		{
+			userList[i] = (User) it.next();
+		}
 		return userList;
 	}
 	

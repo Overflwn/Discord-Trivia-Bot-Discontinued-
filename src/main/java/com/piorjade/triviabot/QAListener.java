@@ -344,7 +344,7 @@ public class QAListener implements MessageCreateListener {
 				do
 				{
 					ran = gen.nextInt(MainClass.getBot().getUserList().length-1);
-				} while (MainClass.getBot().getUserList()[ran].isBot());
+				} while (MainClass.getBot().getUserList()[ran].isBot() || !(MainClass.getBot().getUserList()[ran].getStatus().equals("ONLINE")));
 				setTurn(MainClass.getBot().getUserList()[ran].getName());
 				MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("It's " + turn + "'s turn now!");
 			}

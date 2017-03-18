@@ -219,7 +219,7 @@ public class QAListener implements MessageCreateListener {
 			}
 		}
 		
-		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Here are the winners:");
+		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Here are the winners:**");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -229,7 +229,7 @@ public class QAListener implements MessageCreateListener {
 			MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 			System.exit(1);
 		}
-		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("First: " + firstName + " - " + first + " points.");
+		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**First: " + firstName + " - " + first + " points.**");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -239,7 +239,7 @@ public class QAListener implements MessageCreateListener {
 			MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 			System.exit(1);
 		}
-		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Second: " + secondName + " - " + second + " points.");
+		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Second: " + secondName + " - " + second + " points.**");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -249,7 +249,7 @@ public class QAListener implements MessageCreateListener {
 			MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 			System.exit(1);
 		}
-		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Third: " + thirdName + " - " + third + " points.");
+		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Third: " + thirdName + " - " + third + " points.**");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -286,11 +286,11 @@ public class QAListener implements MessageCreateListener {
 					
 					try
 					{
-						MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Question: " + question);
+						MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Question: " + question + "**");
 					} catch (Exception e)
 					{
 						e.printStackTrace();
-						MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Question: " + question);
+						MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Question: " + question + "**");
 					}
 					try {
 						Thread.sleep(500);
@@ -313,7 +313,7 @@ public class QAListener implements MessageCreateListener {
 						MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 						System.exit(1);
 					}
-					MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("These were all questions! Next round starts in: " + (double) (config.officialQuestionTime / 60 / 60) + " hours.");
+					MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**These were all questions! Next round starts in: " + (double) (config.officialQuestionTime / 60 / 60) + " hours.**");
 					official = false;
 					MainClass.getBot().resetTimer("b");
 					MainClass.getBot().resetTimer("a", config.questionTimeout);
@@ -331,7 +331,7 @@ public class QAListener implements MessageCreateListener {
 					MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 					System.exit(1);
 				}
-				MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("These were all questions! Next round starts in: " + (double) (config.officialQuestionTime / 60 / 60) + " hours.");
+				MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**These were all questions! Next round starts in: " + (double) (config.officialQuestionTime / 60 / 60) + " hours.**");
 				official = false;
 				MainClass.resetB = false;
 				MainClass.getBot().resetTimer("b");
@@ -346,7 +346,7 @@ public class QAListener implements MessageCreateListener {
 					ran = gen.nextInt(MainClass.getBot().getUserList().length-1);
 				} while (MainClass.getBot().getUserList()[ran].isBot() || !(MainClass.getBot().getUserList()[ran].getStatus().equals("ONLINE")));
 				setTurn(MainClass.getBot().getUserList()[ran].getName());
-				MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("It's " + turn + "'s turn now!");
+				MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**It's " + turn + "'s turn to ask a question.**");
 			}
 		} else
 		{
@@ -374,7 +374,7 @@ public class QAListener implements MessageCreateListener {
 	
 	void notRunning()
 	{
-		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("I'm currently not running! The owner must enter '!start' to start me");
+		MainClass.getBot().getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**I'm currently not running! The owner must enter '!start' to start me**");
 	}
 	
 	public void onMessageCreate(DiscordAPI arg0, Message arg1) {
@@ -391,7 +391,7 @@ public class QAListener implements MessageCreateListener {
 					String afterSuff = arg1.getContent().substring(suff[0].length());
 					System.out.println(suffix);
 					if (suffix.equalsIgnoreCase("me") && !asking) {
-						arg1.reply("Okay, it's " + arg1.getAuthor().getName() + "'s turn now!");
+						arg1.reply("**It's " + arg1.getAuthor().getName() + "'s turn to ask a question now.**");
 						turn = arg1.getAuthor().getName();
 						asking = true;
 						waiting = false;
@@ -403,10 +403,10 @@ public class QAListener implements MessageCreateListener {
 						waiting = true;
 						asking = false;
 						turn = null;
-						arg1.reply("Who wants to ask next? Enter '!me' !");
+						arg1.reply("**Who wants to ask next? Enter '!me' !**");
 					} else if(suffix.equalsIgnoreCase("bp") && asking && !isRole(arg1.getAuthor().getId()))
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " You're not allowed to do that.");
+						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You're not allowed to do that.**");
 					}
 					
 					if(suffix.equalsIgnoreCase("join") && init)
@@ -417,18 +417,18 @@ public class QAListener implements MessageCreateListener {
 							enteredAnswers[joinedIds.size()-1] = "none";
 							points[joinedIds.size()-1] = 0;
 							time[joinedIds.size()-1] = 0;
-							arg1.reply(arg1.getAuthor().getMentionTag() + " joined the game!");
+							arg1.reply("**" + arg1.getAuthor().getMentionTag() + " joined the game!**");
 						}
 					}
 					
 					if(suffix.equalsIgnoreCase("join") && !init && !official)
 					{
-						arg1.reply("The Officials are currently not running!");
+						arg1.reply("**The Officials are currently not running!**");
 					}
 					
 					if(suffix.equalsIgnoreCase("join") && !init && official)
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " You can't join in while the Officials are running.");
+						arg1.reply(arg1.getAuthor().getMentionTag() + "**You can't join in while the Officials are running.**");
 					}
 					
 					if(suffix.equalsIgnoreCase("bp") && isRole(arg1.getAuthor().getId()) && !isOfficial())
@@ -436,11 +436,11 @@ public class QAListener implements MessageCreateListener {
 						
 						if (!(arg1.getMentions().size() > 0))
 						{
-							arg1.reply("Usage: !bp @NAME");
+							arg1.reply("**Usage: !bp @NAME**");
 						}
 						String userID = arg1.getMentions().get(0).getId();
 						try {
-							arg1.reply("It's " + MainClass.getBot().getAPI().getUserById(userID).get().getName() + "'s turn now!");
+							arg1.reply("**It's " + MainClass.getBot().getAPI().getUserById(userID).get().getName() + "'s turn to ask a question.**");
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -476,22 +476,22 @@ public class QAListener implements MessageCreateListener {
 					
 					if(suffix.equalsIgnoreCase("ta") && !isOfficial())
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " The Officials are currently not running!");
+						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " The Officials are currently not running!**");
 					}
 					
 					if(suffix.equalsIgnoreCase("ta") && isOfficial() && suff.length > 1 && !hasJoined(arg1.getAuthor().getId()))
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " You didn't join the game!");
+						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You didn't join the game!**");
 					}
 					
 					if(suffix.equalsIgnoreCase("turn"))
 					{
 						if (asking && !isOfficial())
-							arg1.reply("It's " + turn + "'s turn.");
+							arg1.reply("**It's " + turn + "'s turn.**");
 						else if(asking && isOfficial())
-							arg1.reply("The Officials are currently running.");
+							arg1.reply("**The Officials are currently running.**");
 						else
-							arg1.reply("Noone is asking. Enter '!me' to ask a question!");
+							arg1.reply("**Noone is asking. Enter '!me' to ask a question!**");
 					}
 					if(suffix.equalsIgnoreCase("next") && !isOfficial())
 					{
@@ -499,7 +499,7 @@ public class QAListener implements MessageCreateListener {
 						long end = MainClass.getBot().timerB.tEnd;
 						long left = end - cTime;
 						double leftH = (left/60) / 60;
-						arg1.reply(leftH + " hours left until the next Officials.");
+						arg1.reply("**" + leftH + " hours left until the next Officials.**");
 					}
 					
 					if(suffix.equalsIgnoreCase("yes") && asking && arg1.getAuthor().getName().equals(turn) && !isOfficial() ) 
@@ -507,22 +507,28 @@ public class QAListener implements MessageCreateListener {
 						System.out.println("Entered yes");
 						String winner = arg1.getMentions().get(0).getName();
 						System.out.println(winner + " won.");
-						arg1.reply("Looks like " + arg1.getMentions().get(0).getMentionTag() + " is the winner of this turn!");
-						arg1.reply("It's " + arg1.getMentions().get(0).getMentionTag() + "'s turn now!");
+						arg1.reply("**It's " + arg1.getMentions().get(0).getMentionTag() + "'s turn to ask a question.**");
 						setTurn(winner);
 						MainClass.getBot().resetTimer("a");
 					}
 					
 					if(suffix.equalsIgnoreCase("categories") && !isOfficial() && isRole(arg1.getAuthor().getId())) 
 					{
-						String[] categories = MainClass.getBot().getCategories();
-						String message = "Categories: ";
-						for (int i = 0; i < categories.length; i++)
+						try
 						{
-							message = message + categories[i] + ", ";
+							String[] categories = MainClass.getBot().getCategories();
+							String message = "Categories: ";
+							for (int i = 0; i < categories.length; i++)
+							{
+								message = message + categories[i] + ", ";
+							}
+							arg1.reply(message);
+						} catch (Exception e)
+						{
+							arg1.reply("There was an error getting the categories!");
 						}
-						arg1.reply(message);
 					}
+					
 					if(suffix.equalsIgnoreCase("category") && !isOfficial() && isRole(arg1.getAuthor().getId()) && suff.length > 1)
 					{
 						if(!suff[1].equalsIgnoreCase("mixed"))
@@ -535,34 +541,34 @@ public class QAListener implements MessageCreateListener {
 								{
 									category = suff[1];
 									mixed = false;
-									arg1.reply("Next category set to: " + suff[1]);
+									arg1.reply("**Next category set to: " + suff[1] + "**");
 									return;
 								}
 							}
 							
-							arg1.reply("Category not found.");
+							arg1.reply("**Category not found.**");
 						} else
 						{
 							category = "mixed";
 							mixed = true;
-							arg1.reply("Next category is mixed.");
+							arg1.reply("**Next category is mixed.**");
 							
 						}
 					}
 					
 					if(suffix.equalsIgnoreCase("category") && isOfficial() && isRole(arg1.getAuthor().getId()) && suff.length > 1)
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " You can't do that while the Officials are running.");
+						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You can't do that while the Officials are running.**");
 					}
 					
 					if(suffix.equalsIgnoreCase("category") && !isRole(arg1.getAuthor().getId()) && suff.length > 1)
 					{
-						arg1.reply(arg1.getAuthor().getMentionTag() + " You can't do that.");
+						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You can't do that.**");
 					}
 					
 					if(suffix.equalsIgnoreCase("category") && !isOfficial() && isRole(arg1.getAuthor().getId()) && !(suff.length > 1))
 					{
-						arg1.reply("Usage: !category [name]");
+						arg1.reply("**Usage: !category [name]**");
 					}
 					
 					

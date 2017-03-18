@@ -219,10 +219,6 @@ public class MessageListener implements MessageCreateListener, MessageEditListen
 				arg1.reply("Commands (Question System): me, bp @NAME, openBp, ta [answer], next, turn, status @NAME, join, yes @NAME, categories, category [name]");
 			}
 			
-			if(arg1.getContent().startsWith("!") && !isRole(arg1.getAuthor().getId()) && !suffix.equalsIgnoreCase("help"))
-			{
-				arg1.reply("You're not allowed to do that.");
-			}
 		}
 	}
 	

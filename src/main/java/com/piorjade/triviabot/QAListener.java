@@ -491,7 +491,7 @@ public class QAListener implements MessageCreateListener {
 						else if(asking && isOfficial())
 							arg1.reply("**The Officials are currently running.**");
 						else
-							arg1.reply("**Noone is asking. Enter '!me' to ask a question!**");
+							arg1.reply("**No one is asking. Enter '!me' to ask a question!**");
 					}
 					if(suffix.equalsIgnoreCase("next") && !isOfficial())
 					{

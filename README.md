@@ -71,7 +71,7 @@ numberOfQuestions: The amount of questions the "Officials" should have
 
 !restart: (admin-rights) Basically stop and start
 
-!help: Prints all these commands
+!triviaHelp: Prints all these commands
 
 !status @NAME: Prints the status (offline, online, etc.) of the mentioned user in the chat.
 

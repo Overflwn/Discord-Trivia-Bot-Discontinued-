@@ -213,9 +213,9 @@ public class MessageListener implements MessageCreateListener, MessageEditListen
 				
 				
 			}
-			if(arg1.getContent().startsWith("!") && suffix.equalsIgnoreCase("help"))
+			if(arg1.getContent().startsWith("!") && suffix.equalsIgnoreCase("triviaHelp"))
 			{
-				arg1.reply("Commands (System): help, start, stop, resetTimerA, resetTimerB, restart, shutdown");
+				arg1.reply("Commands (System): triviaHelp, start, stop, resetTimerA, resetTimerB, restart, shutdown");
 				arg1.reply("Commands (Question System): me, bp @NAME, openBp, ta [answer], next, turn, status @NAME, join, yes @NAME, categories, category [name]");
 			}
 			

@@ -447,7 +447,7 @@ public class QAListener implements MessageCreateListener {
 					}
 					
 					
-					if(suffix.equalsIgnoreCase("bp") && isRole(arg1.getAuthor().getId()) && !isOfficial())
+					if(suffix.equalsIgnoreCase("bp") && (isRole(arg1.getAuthor().getId()) || arg1.getAuthor().getId().equals(turn.getId())) && !isOfficial())
 					{
 						
 						if (!(arg1.getMentions().size() > 0))
@@ -518,7 +518,7 @@ public class QAListener implements MessageCreateListener {
 						arg1.reply("Question: " + question);
 					}
 					
-					if(suffix.equalsIgnoreCase("yes") && asking && arg1.getAuthor().getId().equals(turn.getId()) && !isOfficial() ) 
+					if(suffix.equalsIgnoreCase("yes") && asking && arg1.getAuthor().getId().equals(turn.getId()) && !isOfficial() && userQuestion.length() > 0) 
 					{
 						System.out.println("Entered yes");
 						String winner = arg1.getMentions().get(0).getName();

@@ -81,7 +81,7 @@ numberOfQuestions: The amount of questions the "Officials" should have
 
 !timera: (admin-rights) Prints the current second of the question timeout.
 
-
+!question: Prints the current question, either entered by the bp user with ** blah ** or the official question if the officials are running.
 
 # How points are determined
 

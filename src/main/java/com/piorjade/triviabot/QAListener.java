@@ -25,7 +25,8 @@ import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class QAListener implements MessageCreateListener {
 
-	static String turn = "none";
+	static User turn = null;
+	static String userQuestion = "";
 	static volatile boolean asking = false;
 	static volatile boolean official = false;
 	static String question;
@@ -105,7 +106,7 @@ public class QAListener implements MessageCreateListener {
 		}
 	}
 	
-	public void setTurn(String name)
+	public void setTurn(User name)
 	{
 		if(running)
 		{
@@ -393,6 +394,10 @@ public class QAListener implements MessageCreateListener {
 			// TODO Auto-generated method stub
 			if(isChannel(arg1.getChannelReceiver().getId()) && isServer(arg1.getChannelReceiver().getServer().getId()) || config.notBound)
 			{
+				if(arg1.getContent().startsWith("**") && arg1.getContent().endsWith("**") && arg1.getAuthor().getId().equals(turn.getId()))
+				{
+					userQuestion = arg1.getContent();
+				}
 				if(arg1.getContent().startsWith("!")) {
 					//divide by space
 					String[] suff = arg1.getContent().split("\\s+");
@@ -401,7 +406,8 @@ public class QAListener implements MessageCreateListener {
 					String afterSuff = arg1.getContent().substring(suff[0].length());
 					if (suffix.equalsIgnoreCase("me") && !asking) {
 						arg1.reply("**It's " + arg1.getAuthor().getName() + "'s turn to ask a question now.**");
-						turn = arg1.getAuthor().getName();
+						turn = arg1.getAuthor();
+						userQuestion = "";
 						asking = true;
 						//waiting = false;
 					}
@@ -411,7 +417,8 @@ public class QAListener implements MessageCreateListener {
 						//waiting = true;
 						asking = false;
 						turn = null;
-						arg1.reply("**Who wants to ask next? Enter '!me' !**");
+						userQuestion = "";
+						arg1.reply("**Who wants to ask next? Enter '!me' to claim bp.**");
 					} else if(suffix.equalsIgnoreCase("openBp") && asking && !isRole(arg1.getAuthor().getId()))
 					{
 						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You're not allowed to do that.**");
@@ -458,7 +465,7 @@ public class QAListener implements MessageCreateListener {
 						}
 						
 						try {
-							turn = MainClass.getAPI().getUserById(userID).get().getName();
+							turn = MainClass.getAPI().getUserById(userID).get();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -466,6 +473,7 @@ public class QAListener implements MessageCreateListener {
 							return;
 						}
 						asking = true;
+						userQuestion = "";
 						//waiting = false;
 					}
 					
@@ -495,20 +503,28 @@ public class QAListener implements MessageCreateListener {
 					if(suffix.equalsIgnoreCase("turn"))
 					{
 						if (asking && !isOfficial())
-							arg1.reply("**It's " + turn + "'s turn.**");
+							arg1.reply("**It's " + turn.getName() + "'s turn.**");
 						else if(asking && isOfficial())
 							arg1.reply("**The officials are currently running.**");
 						else
-							arg1.reply("**No one is asking. Enter '!me' to ask a question!**");
+							arg1.reply("**No one is asking. Enter '!me' to claim bp.**");
 					}
 					
-					if(suffix.equalsIgnoreCase("yes") && asking && arg1.getAuthor().getName().equals(turn) && !isOfficial() ) 
+					if(suffix.equalsIgnoreCase("question") && !isOfficial() && asking)
+					{
+						arg1.reply("Question: " + userQuestion);
+					} else if(suffix.equalsIgnoreCase("question") && isOfficial())
+					{
+						arg1.reply("Question: " + question);
+					}
+					
+					if(suffix.equalsIgnoreCase("yes") && asking && arg1.getAuthor().getId().equals(turn.getId()) && !isOfficial() ) 
 					{
 						System.out.println("Entered yes");
 						String winner = arg1.getMentions().get(0).getName();
 						System.out.println(winner + " won.");
 						arg1.reply("**It's " + arg1.getMentions().get(0).getMentionTag() + "'s turn to ask a question.**");
-						setTurn(winner);
+						setTurn(arg1.getMentions().get(0));
 					}
 					
 					if(suffix.equalsIgnoreCase("categories") && !isOfficial() && isRole(arg1.getAuthor().getId())) 

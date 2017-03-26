@@ -108,7 +108,6 @@ public class MainClass {
 				{
 					try {
 						System.out.println("INFO: LOADING " + listOfFiles[i].getName());
-						api.getChannelById(String.valueOf(config.channel)).sendMessage("INFO: LOADING " + listOfFiles[i].getName());
 						Object obj = parser.parse(new FileReader(
 								System.getProperty("user.home") + "/Documents/trivia_bot/categories/" + listOfFiles[i].getName()));
 						JSONObject jsonObject = (JSONObject) obj;
@@ -148,7 +147,6 @@ public class MainClass {
 				}
 			}
 			
-			api.getChannelById(String.valueOf(config.channel)).sendMessage("INFO: SIZE OF QUESTIONS " + config.officialQuestions.size());
 		}
 	}
 	

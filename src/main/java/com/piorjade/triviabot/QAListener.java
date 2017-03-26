@@ -420,7 +420,7 @@ public class QAListener implements MessageCreateListener {
 					if(suffix.equalsIgnoreCase("host") && isRole(arg1.getAuthor().getId()) && !isOfficial() && !init)
 					{
 						initOfficials();
-						arg1.reply("**Enter '!start' to start the Officals.**");
+						arg1.reply("**Enter '!start' to start the officals.**");
 					}
 					if(suffix.equalsIgnoreCase("start") && isRole(arg1.getAuthor().getId()) && !isOfficial() && init)
 					{

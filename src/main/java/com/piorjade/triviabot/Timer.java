@@ -20,7 +20,7 @@ public class Timer implements Runnable {
 	volatile boolean running = true;
 	volatile long tEnd = 0;
 	public volatile long current = 0;
-	public String nickname;
+	public volatile String nickname;
 	public Timer(long amount, String nickname) {
 		tEnd = amount;
 		start = System.currentTimeMillis();
@@ -42,11 +42,11 @@ public class Timer implements Runnable {
 	}
 	
 	
-	public void run() {
+	public synchronized void run() {
 		
 		while (running)
 		{
-			if(!finished)
+			if(!finished && !MainClass.shouldWait())
 			{
 				current = (System.currentTimeMillis() / 1000) - (start / 1000);
 				if (current >= tEnd) {
@@ -54,9 +54,10 @@ public class Timer implements Runnable {
 				}
 			}
 			
-			if(MainClass.resetTimer(this.nickname) == true)
+			if(MainClass.shouldReset())
 			{
 				reset();
+				MainClass.resetTimer = false;
 			}
 		}
 	}

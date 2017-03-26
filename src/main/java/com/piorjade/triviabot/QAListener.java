@@ -128,7 +128,7 @@ public class QAListener implements MessageCreateListener {
 			turn = null;
 			init = false;
 			official = false;
-			MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Who wants to ask a question next? Enter '!me' to ask a question next.");
+			MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("Who wants to ask a question next? Enter '!me' to ask the next question.");
 		} else
 		{
 			
@@ -418,7 +418,7 @@ public class QAListener implements MessageCreateListener {
 						asking = false;
 						turn = null;
 						userQuestion = "";
-						arg1.reply("**Who wants to ask a question next? Enter '!me' to ask a question next.**");
+						arg1.reply("**Who wants to ask a question next? Enter '!me' to ask the next question.**");
 					} else if(suffix.equalsIgnoreCase("openBp") && asking && !isRole(arg1.getAuthor().getId()))
 					{
 						arg1.reply("**" + arg1.getAuthor().getMentionTag() + " You're not allowed to do that.**");

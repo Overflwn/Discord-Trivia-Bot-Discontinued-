@@ -323,7 +323,7 @@ public class QAListener implements MessageCreateListener {
 						MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 						System.exit(1);
 					}
-					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**These were all questions!**");
+					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Looks like we're out of questions!**");
 					official = false;
 					MainClass.resetTimer = true;
 					//nextQuestion();
@@ -340,7 +340,7 @@ public class QAListener implements MessageCreateListener {
 					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
 					System.exit(1);
 				}
-				MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**These were all questions!**");
+				MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Looks like we're out of questions!**");
 				official = false;
 				MainClass.resetTimer = true;
 				MainClass.timerWait = true;
@@ -435,7 +435,7 @@ public class QAListener implements MessageCreateListener {
 							enteredAnswers[joinedIds.size()-1] = "none";
 							points[joinedIds.size()-1] = 0;
 							time[joinedIds.size()-1] = 0;
-							arg1.reply("**" + arg1.getAuthor().getMentionTag() + " joined the game!**");
+							arg1.reply("**" + arg1.getAuthor().getMentionTag() + " has joined the game!**");
 						}
 					}
 					

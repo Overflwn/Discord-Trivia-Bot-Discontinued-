@@ -523,6 +523,7 @@ public class QAListener implements MessageCreateListener {
 						System.out.println("Entered yes");
 						String winner = arg1.getMentions().get(0).getName();
 						System.out.println(winner + " won.");
+						userQuestion = "";
 						arg1.reply("**It's " + arg1.getMentions().get(0).getMentionTag() + "'s turn to ask a question.**");
 						setTurn(arg1.getMentions().get(0));
 					}

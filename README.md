@@ -4,8 +4,7 @@ This is a bot for Discord made with Java and Javacord.
 It basically is a "question"-game where one user asks a question and the others have to answer it, the asking person then
 gives the right to the winner using !yes @NAME.
 
-It also automatically gives the right to others after a set amount of time and users in a set role have the ability
-to use the command !openBp or !bp @NAME.
+Admins can open the bp rights or give them to others by using !openBp or !bp @NAME. (bp is basically the "turn")
 
 This program reads the settings file (settings.json) from [HOME]/Documents/trivia_bot/settings.json and the category-files
 (where questions and answers for the "Officials" are located) in [HOME]/Documents/trivia_bot/categories/.
@@ -22,11 +21,8 @@ This program reads the settings file (settings.json) from [HOME]/Documents/trivi
 	"serverID": "00000000000000000",
 	"channelID": "000000000000000000",
 	"adminRole": "Moderators",
-	"questionTimeout": "300",
 	"officialQuestionTimeout": "5",
-	"officialQuestionCycle": "10800",
 	"availablePoints": "8",
-	"joinTime": "300",
 	"numberOfQuestions": "100"
 }
 ```
@@ -41,15 +37,9 @@ channelID: The ID of the channel the bot should be on, the same as above but rig
 
 adminRole: The name of the role which should have admin-rights
 
-questionTimeout: The amount of seconds the system should wait for the asking person to enter !yes @BLAH, if he doesn't, choose a random user
-
 officialQuestionTimeout: The amount of seconds the "Officials" should leave for users to answer the question
 
-officialQuestionCycle: The amount of seconds the system should wait until the next "Officials"
-
 availablePoints: The amount of points you can maximally get from a question (-1 because you can't type that fast that you answer it in 0 seconds)
-
-joinTime: The amount of seconds users have time to join the "Officials" (whenever they start, they wait this time and then ACTUALLY start)
 
 numberOfQuestions: The amount of questions the "Officials" should have
 
@@ -79,7 +69,7 @@ numberOfQuestions: The amount of questions the "Officials" should have
 
 !ta [answer]: Enters the argument as your answer for the current question of the Officials (NOTE: if you enter that 2 times for the same question, the old answer gets deleted)
 
-!join: If the Officials are about to start, you can enter them with that. (you can't do that while they're running)
+!join: If the Officials are about to start, you can enter them with that.
 
 !categories: (admin-rights) Prints every category in the categories folder.
 
@@ -87,17 +77,11 @@ numberOfQuestions: The amount of questions the "Officials" should have
 
 !reconnect: (admin-rights) Reconnects the bot, whyever you'd want to do that.
 
-!resetTimerA: (admin-rights) Resets the question timeout.
-
-!resetTimerB: (admin-rights) Resets the Officials cooldown.
-
 !shutdown: (admin-rights) Shuts the bot down.
 
 !timera: (admin-rights) Prints the current second of the question timeout.
 
-!timerb: (admin-rights) Prints the current second of the Officials cooldown.
-
-
+!question: Prints the current question, either entered by the bp user with ** blah ** or the official question if the officials are running.
 
 # How points are determined
 

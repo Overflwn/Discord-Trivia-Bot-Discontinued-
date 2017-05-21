@@ -1,7 +1,6 @@
 package com.piorjade.triviabot;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
@@ -205,7 +204,7 @@ public class MessageListener implements MessageCreateListener, MessageEditListen
 			if(arg1.getContent().startsWith("!") && suffix.equalsIgnoreCase("triviaHelp"))
 			{
 				arg1.reply("Commands (System): triviaHelp, startBot, stopBot, resetTimerA, restartBot, shutdown, timera");
-				arg1.reply("Commands (Question System): me, bp @NAME, openBp, ta [answer], next, turn, status @NAME, join, yes @NAME, categories, category [name], host, start");
+				arg1.reply("Commands (Question System): me, bp @NAME, openBp, ta [answer], turn, status @NAME, join, yes @NAME, categories, category [name], host, start");
 			}
 			
 		}

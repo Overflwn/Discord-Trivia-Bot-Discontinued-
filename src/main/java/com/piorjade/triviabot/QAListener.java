@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ExecutionException;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
@@ -198,8 +196,28 @@ public class QAListener implements MessageCreateListener {
 				{
 					long timeNeeded = time[i];
 					points[i] += (availablePoints - timeNeeded);
+					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**" + joinedIds.get(i).getMentionTag() + " answered the question correctly! (+" + String.valueOf((availablePoints - timeNeeded)) + ")**");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						System.err.println("ERROR: Couldn't let the thread sleep! Shutting down...");
+						MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
+						System.exit(1);
+					}
 				}
 			}
+		}
+		MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Prepare for the next question.**");
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("ERROR: Couldn't let the thread sleep! Shutting down...");
+			MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
+			System.exit(1);
 		}
 	}
 	
@@ -331,6 +349,7 @@ public class QAListener implements MessageCreateListener {
 				}
 			} else if (official && !iter.hasNext())
 			{
+				checkAnswers();
 				checkWinner();
 				try {
 					Thread.sleep(500);
@@ -345,6 +364,7 @@ public class QAListener implements MessageCreateListener {
 				official = false;
 				MainClass.resetTimer = true;
 				MainClass.timerWait = true;
+				asking = false;
 				//nextQuestion();
 			} /*else if (!official && !waiting)
 			{
@@ -479,7 +499,6 @@ public class QAListener implements MessageCreateListener {
 					
 					if(suffix.equalsIgnoreCase("ta") && isOfficial() && suff.length > 1 && hasJoined(arg1.getAuthor().getId()))
 					{
-						String msg = suff[1];
 						for (int i = 0; i < joinedIds.size(); i++)
 						{
 							if(joinedIds.get(i).getId().equals(arg1.getAuthor().getId()))
@@ -586,6 +605,7 @@ public class QAListener implements MessageCreateListener {
 					{
 						arg1.reply("**Usage: !category [name]**");
 					}
+					
 					
 					
 					if(suffix.equalsIgnoreCase("status") && suff.length > 1 && arg1.getMentions().size() > 0)

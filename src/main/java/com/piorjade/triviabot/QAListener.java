@@ -364,6 +364,7 @@ public class QAListener implements MessageCreateListener {
 				official = false;
 				MainClass.resetTimer = true;
 				MainClass.timerWait = true;
+				asking = false;
 				//nextQuestion();
 			} /*else if (!official && !waiting)
 			{

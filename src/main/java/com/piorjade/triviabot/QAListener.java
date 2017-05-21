@@ -349,6 +349,7 @@ public class QAListener implements MessageCreateListener {
 				}
 			} else if (official && !iter.hasNext())
 			{
+				checkAnswers();
 				checkWinner();
 				try {
 					Thread.sleep(500);
@@ -603,6 +604,7 @@ public class QAListener implements MessageCreateListener {
 					{
 						arg1.reply("**Usage: !category [name]**");
 					}
+					
 					
 					
 					if(suffix.equalsIgnoreCase("status") && suff.length > 1 && arg1.getMentions().size() > 0)

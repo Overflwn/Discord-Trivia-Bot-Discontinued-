@@ -197,8 +197,26 @@ public class QAListener implements MessageCreateListener {
 					long timeNeeded = time[i];
 					points[i] += (availablePoints - timeNeeded);
 					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**" + joinedIds.get(i).getMentionTag() + " answered the question correctly! (+" + String.valueOf(points[i]) + ")**");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						System.err.println("ERROR: Couldn't let the thread sleep! Shutting down...");
+						MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
+						System.exit(1);
+					}
 				}
 			}
+		}
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("ERROR: Couldn't let the thread sleep! Shutting down...");
+			MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("ERROR: Couldn't let the thread sleep! Shutting down...");
+			System.exit(1);
 		}
 	}
 	

@@ -196,7 +196,7 @@ public class QAListener implements MessageCreateListener {
 				{
 					long timeNeeded = time[i];
 					points[i] += (availablePoints - timeNeeded);
-					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**" + joinedIds.get(i).getMentionTag() + " answered the question correctly! (+" + String.valueOf(points[i]) + ")**");
+					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**" + joinedIds.get(i).getMentionTag() + " answered the question correctly! (+" + String.valueOf((availablePoints - timeNeeded)) + ")**");
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
@@ -209,6 +209,7 @@ public class QAListener implements MessageCreateListener {
 				}
 			}
 		}
+		MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**Prepare for the next question.**");
 		try {
 			Thread.sleep(1500);
 		} catch (InterruptedException e) {

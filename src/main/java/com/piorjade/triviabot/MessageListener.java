@@ -1,7 +1,6 @@
 package com.piorjade.triviabot;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;

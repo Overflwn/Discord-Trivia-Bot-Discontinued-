@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ExecutionException;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
@@ -198,6 +196,7 @@ public class QAListener implements MessageCreateListener {
 				{
 					long timeNeeded = time[i];
 					points[i] += (availablePoints - timeNeeded);
+					MainClass.getAPI().getChannelById(String.valueOf(config.channel)).sendMessage("**" + joinedIds.get(i).getMentionTag() + " answered the question correctly! (+" + String.valueOf(points[i]) + ")**");
 				}
 			}
 		}
@@ -479,7 +478,6 @@ public class QAListener implements MessageCreateListener {
 					
 					if(suffix.equalsIgnoreCase("ta") && isOfficial() && suff.length > 1 && hasJoined(arg1.getAuthor().getId()))
 					{
-						String msg = suff[1];
 						for (int i = 0; i < joinedIds.size(); i++)
 						{
 							if(joinedIds.get(i).getId().equals(arg1.getAuthor().getId()))

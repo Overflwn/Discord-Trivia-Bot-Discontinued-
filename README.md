@@ -1,3 +1,6 @@
+# This GitHub repo will get no updates anymore as I will continue it in private, offering my support and the newest version for a small amount of money or other offerings. This repo will stay up but still under the license.
+
+
 # Discord-Trivia-Bot
 This is a bot for Discord made with Java and Javacord.
 
